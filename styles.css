@@ -1,0 +1,259 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #000;
+    font-family: 'Courier New', monospace;
+    color: rgb(255, 255, 255);
+    touch-action: none;
+    user-select: none;
+}
+
+#game-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Starfield with parallax effect */
+.starfield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.starfield .stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+}
+
+.stars.layer1 {
+    z-index: 2;
+    animation: moveStars 40s linear infinite;
+}
+
+.stars.layer2 {
+    z-index: 3;
+    animation: moveStars 30s linear infinite;
+}
+
+.stars.layer3 {
+    z-index: 4;
+    animation: moveStars 20s linear infinite;
+}
+
+@keyframes moveStars {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(-100%); }
+}
+
+.star {
+    position: absolute;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.layer1 .star { width: 1px; height: 1px; opacity: 0.3; }
+.layer2 .star { width: 2px; height: 2px; opacity: 0.6; }
+.layer3 .star { width: 3px; height: 3px; opacity: 0.9; }
+
+/* Spaceship */
+#spaceship {
+    position: absolute;
+    width: 40px;
+    height: 60px;
+    z-index: 10;
+    transform-origin: center 70%;
+    transition: transform 0.1s ease-out;
+}
+
+.ship-body {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: #39f;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    transform: rotate(180deg);
+}
+
+.ship-cockpit {
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: #0cf;
+    border-radius: 50%;
+    top: 8px;
+    left: 12px;
+}
+
+.engine-flame {
+    position: absolute;
+    width: 20px;
+    height: 0;
+    background-color: #f90;
+    bottom: -10px;
+    left: 10px;
+    border-radius: 0 0 10px 10px;
+    transition: height 0.1s ease-out;
+    box-shadow: 0 0 10px #f90, 0 0 20px #f90;
+}
+
+/* Asteroids */
+.asteroid {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #753;
+    z-index: 5;
+}
+
+.asteroid::before, .asteroid::after {
+    content: '';
+    position: absolute;
+    background-color: #642;
+    border-radius: 50%;
+}
+
+/* Fragments */
+.fragment {
+    position: absolute;
+    border-radius: 50%;
+    background-color: #642;
+    z-index: 5;
+}
+
+/* Lasers */
+.laser {
+    position: absolute;
+    width: 4px;
+    height: 20px;
+    background-color: #0f0;
+    z-index: 6;
+    box-shadow: 0 0 5px #0f0, 0 0 10px #0f0;
+}
+
+/* UI Elements */
+#ui {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 20;
+    font-size: 16px;
+}
+
+#score {
+    margin-bottom: 10px;
+}
+
+#lives {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+.life {
+    width: 20px;
+    height: 20px;
+    background-color: #39f;
+    clip-path: polygon(50% 0%, 100% 100%, 0% 100%);
+    transform: rotate(180deg);
+}
+
+#cooldown-container {
+    width: 100px;
+    height: 10px;
+    border: 1px solid rgb(255, 255, 255);
+    margin-bottom: 10px;
+}
+
+#cooldown-bar {
+    height: 100%;
+    width: 100%;
+    background-color: rgb(255, 255, 255);
+    transition: width 0.1s linear;
+}
+
+#hyperspace-button {
+    background-color: transparent;
+    border: 1px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    padding: 5px 10px;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+}
+
+#hyperspace-button:hover {
+    background-color: rgba(104, 104, 104, 0.1);
+}
+
+#hyperspace-charge {
+    width: 100px;
+    height: 10px;
+    border: 1px solid rgb(16, 159, 202);
+    margin-top: 5px;
+    display: none;
+}
+
+#hyperspace-bar {
+    height: 100%;
+    width: 0;
+    background-color: rgb(16, 159, 202);
+    transition: width 0.1s linear;
+}
+
+/* Game Over Screen */
+#game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 30;
+    display: none;
+}
+
+#game-over h1 {
+    font-size: 48px;
+    color: rgb(255, 255, 255);
+    margin-bottom: 20px;
+}
+
+#final-score {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+#restart-button {
+    background-color: transparent;
+    border: 2px solid rgb(255, 255, 255);
+    color: rgb(255, 255, 255);
+    padding: 10px 20px;
+    font-size: 18px;
+    font-family: 'Courier New', monospace;
+    cursor: pointer;
+}
+
+#restart-button:hover {
+    background-color: rgba(104, 104, 104, 0.1);
+}
+
+/* Instructions */
+#instructions {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 20;
+    font-size: 12px;
+    color: rgb(255, 255, 255);
+    opacity: 0.7;
+}

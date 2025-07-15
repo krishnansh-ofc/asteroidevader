@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asteroid Evader</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Starfield background -->
+        <div class="starfield">
+            <div class="stars layer1" id="stars1"></div>
+            <div class="stars layer2" id="stars2"></div>
+            <div class="stars layer3" id="stars3"></div>
+        </div>
+
+        <!-- Spaceship -->
+        <div id="spaceship">
+            <div class="ship-body"></div>
+            <div class="ship-cockpit"></div>
+            <div class="engine-flame" id="engine-flame"></div>
+        </div>
+
+        <!-- UI Elements -->
+        <div id="ui">
+            <div id="score">SCORE: 0</div>
+            <div id="lives"></div>
+            <div id="cooldown-container">
+                <div id="cooldown-bar"></div>
+            </div>
+            <button id="hyperspace-button">HYPERSPACE</button>
+            <div id="hyperspace-charge">
+                <div id="hyperspace-bar"></div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="game-over">
+            <h1>GAME OVER</h1>
+            <div id="final-score">FINAL SCORE: 0</div>
+            <button id="restart-button">PLAY AGAIN</button>
+        </div>
+
+        <!-- Instructions -->
+        <div id="instructions">
+            ARROW KEYS: MOVE | SPACE: SHOOT | H: HYPERSPACE
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>
